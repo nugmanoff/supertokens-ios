@@ -1,7 +1,23 @@
 {
     "docs": {
         "Introduction": [
-            "introduction/what-and-why"
+            "introduction/what-and-why",
+            "introduction/installation"
+        ],
+        "Using SuperTokens": [
+            "usage/initialization",
+            "usage/making-api-calls",
+            "usage/verifying-sessions",
+            "usage/manual-refresh"
+        ],
+        "Migration": [
+            "migration/migration"
+        ],
+        "Example Project": [
+            "example/example"
+        ],
+        "API Reference": [
+            "api-reference/api-reference"
         ]
     }
 }
