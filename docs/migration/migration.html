@@ -77,7 +77,16 @@ request.httpMethod = <span class="hljs-string">"POST"</span>
 }).resume()
 </code></pre>
 <p>when using SuperTokens the following code snippet would need to modified like so:</p>
-<pre><code class="hljs css language-swift"><span class="hljs-keyword">let</span> url = <span class="hljs-type">URL</span>(string: <span class="hljs-string">"http://api.example.com/api/getUserInfo"</span>)
+<pre><code class="hljs css language-swift"><span class="hljs-keyword">do</span> {
+    <span class="hljs-comment">// You only need to call this once in your application, before any API call that requires authentication</span>
+    <span class="hljs-keyword">try</span> <span class="hljs-type">SuperTokens</span>.`<span class="hljs-keyword">init</span>`(refreshTokenEndpoint: <span class="hljs-string">"http://api.example.com/api/refreshtoken"</span>, sessionExpiryStatusCode: <span class="hljs-number">440</span>)
+} <span class="hljs-keyword">catch</span> <span class="hljs-type">SuperTokensError</span>.invalidURL {
+    <span class="hljs-comment">// Invalid URL provided for refresh token</span>
+} <span class="hljs-keyword">catch</span> {
+    <span class="hljs-comment">// Unexpected Error</span>
+}
+
+<span class="hljs-keyword">let</span> url = <span class="hljs-type">URL</span>(string: <span class="hljs-string">"http://api.example.com/api/getUserInfo"</span>)
 <span class="hljs-keyword">let</span> request = <span class="hljs-type">URLRequest</span>(url: url!)
 request.httpMethod = <span class="hljs-string">"POST"</span>
 
