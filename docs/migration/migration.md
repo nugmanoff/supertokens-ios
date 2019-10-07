@@ -31,6 +31,15 @@ URLSession.shared.dataTask(request: request, completionHandler: {
 when using SuperTokens the following code snippet would need to modified like so:
 
 ```swift
+do {
+    // You only need to call this once in your application, before any API call that requires authentication
+    try SuperTokens.`init`(refreshTokenEndpoint: "http://api.example.com/api/refreshtoken", sessionExpiryStatusCode: 440)
+} catch SuperTokensError.invalidURL {
+    // Invalid URL provided for refresh token
+} catch {
+    // Unexpected Error
+}
+
 let url = URL(string: "http://api.example.com/api/getUserInfo")
 let request = URLRequest(url: url!)
 request.httpMethod = "POST"
